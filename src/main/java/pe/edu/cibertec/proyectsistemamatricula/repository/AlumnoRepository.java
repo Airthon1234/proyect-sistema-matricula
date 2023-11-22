@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
+    Optional<Alumno> findByAlumnoid(Integer id);
 }
