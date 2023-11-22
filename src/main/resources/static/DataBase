@@ -1,0 +1,41 @@
+CREATE TABLE alumno (
+    alumnoid INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    edad INT
+);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('Juan', 'Pérez', 22);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('Ana', 'García', 20);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('Carlos', 'Martínez', 25);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('Laura', 'Rodríguez', 28);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('David', 'López', 23);
+INSERT INTO alumno (nombre, apellido, edad) VALUES ('Elena', 'Sánchez', 30);
+
+CREATE TABLE curso (
+    cursoid INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    creditos INT
+);
+
+INSERT INTO curso (nombre, descripcion, creditos) VALUES ('Programación en Java', 'Introducción a la programación en Java', 3);
+INSERT INTO curso (nombre, descripcion, creditos) VALUES ('Bases de Datos', 'Fundamentos de bases de datos relacionales', 4);
+INSERT INTO curso (nombre, descripcion, creditos) VALUES ('Diseño Web', 'Desarrollo de sitios web modernos', 5);
+INSERT INTO curso (nombre, descripcion, creditos) VALUES ('Inteligencia Artificial', 'Conceptos básicos de inteligencia artificial', 4);
+INSERT INTO curso (nombre, descripcion, creditos) VALUES ('Redes de Computadoras', 'Fundamentos de redes de computadoras', 3);
+
+
+CREATE TABLE profesor (
+    profesorid INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    especialidad VARCHAR(255),
+    correo VARCHAR(255) UNIQUE NOT NULL
+);
+
+
+INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Juan', 'Pérez', 'Matemáticas', 'juan.perez@example.com');
+INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Ana', 'González', 'Física', 'ana.gonzalez@example.com');
+INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Carlos', 'Martínez', 'Historia', 'carlos.martinez@example.com');
+INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Laura', 'Rodríguez', 'Inglés', 'laura.rodriguez@example.com');
+INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Elena', 'Sánchez', 'Química', 'elena.sanchez@example.com');
