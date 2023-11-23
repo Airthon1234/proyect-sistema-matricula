@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.proyectsistemamatricula.model.bd.Profesor;
+import pe.edu.cibertec.proyectsistemamatricula.model.dto.ProfesorDto;
 import pe.edu.cibertec.proyectsistemamatricula.service.ProfesorService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -26,6 +28,20 @@ public class ProfesorController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(profesorList, HttpStatus.OK);
+    }
+
+    @GetMapping("/dto")
+    public ResponseEntity<List<ProfesorDto>> listarProfesoresDto() {
+        List<ProfesorDto> profesorDtoList = profesorService.listarProfesores()
+                .stream()
+                .map(profesor -> new ProfesorDto(profesor.getProfesorid(), profesor.getNombre(), profesor.getApellido(), profesor.getEspecialidad(), profesor.getCorreo()))
+                .collect(Collectors.toList());
+
+        if (profesorDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(profesorDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -77,13 +77,13 @@ public class CursoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarCurso(@PathVariable Integer id) {
+    public ResponseEntity<String> eliminarCurso(@PathVariable Integer id) {
         Optional<Curso> cursoExistente = cursoService.obtenerCursoPorId(id);
         if (cursoExistente.isPresent()) {
             cursoService.eliminarCurso(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Curso eliminado exitosamente", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Curso no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 }
