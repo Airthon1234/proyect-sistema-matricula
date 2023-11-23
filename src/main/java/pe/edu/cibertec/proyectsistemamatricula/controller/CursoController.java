@@ -6,11 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.proyectsistemamatricula.model.bd.Alumno;
 import pe.edu.cibertec.proyectsistemamatricula.model.bd.Curso;
+import pe.edu.cibertec.proyectsistemamatricula.model.dto.CursoDto;
 import pe.edu.cibertec.proyectsistemamatricula.service.CursoService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -27,6 +29,20 @@ public class CursoController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cursoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/dto")
+    public ResponseEntity<List<CursoDto>> listarCursosDto() {
+        List<CursoDto> cursoDtoList = cursoService.listarCursos()
+                .stream()
+                .map(curso -> new CursoDto(curso.getCursoid(), curso.getNombre(), curso.getDescripcion(), curso.getCreditos()))
+                .collect(Collectors.toList());
+
+        if (cursoDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(cursoDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
