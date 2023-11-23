@@ -79,14 +79,14 @@ public class AlumnoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarAlumno(@PathVariable Integer id) {
+    public ResponseEntity<String> eliminarAlumno(@PathVariable Integer id) {
         Optional<Alumno> alumnoExistente = alumnoService.obtenerAlumnoPorId(id);
 
         if (alumnoExistente.isPresent()) {
             alumnoService.eliminarAlumno(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Alumno eliminado exitosamente", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Alumno no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 

@@ -77,13 +77,15 @@ public class ProfesorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProfesor(@PathVariable Integer id) {
+    public ResponseEntity<String> eliminarProfesor(@PathVariable Integer id) {
         Optional<Profesor> profesorExistente = profesorService.obtenerProfesorPorId(id);
+
         if (profesorExistente.isPresent()) {
             profesorService.eliminarProfesor(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Profesor eliminado exitosamente", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Profesor no encontrado", HttpStatus.NOT_FOUND);
         }
     }
+
 }
