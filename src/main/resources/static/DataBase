@@ -39,3 +39,29 @@ INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Ana', 'Go
 INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Carlos', 'Martínez', 'Historia', 'carlos.martinez@example.com');
 INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Laura', 'Rodríguez', 'Inglés', 'laura.rodriguez@example.com');
 INSERT INTO profesor (nombre, apellido, especialidad, correo) VALUES ('Elena', 'Sánchez', 'Química', 'elena.sanchez@example.com');
+
+
+CREATE TABLE rol (
+    idrol INT AUTO_INCREMENT PRIMARY KEY,
+    nomrol VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE usuario (
+    idusuario INT AUTO_INCREMENT PRIMARY KEY,
+    nomusuario VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nombres VARCHAR(255),
+    apellidos VARCHAR(255),
+    activo BOOLEAN,
+    UNIQUE KEY unique_nomusuario (nomusuario),
+    UNIQUE KEY unique_email (email)
+);
+
+CREATE TABLE usuario_rol (
+    idusuario INT,
+    idrol INT,
+    PRIMARY KEY (idusuario, idrol),
+    FOREIGN KEY (idusuario) REFERENCES usuario(idusuario),
+    FOREIGN KEY (idrol) REFERENCES rol(idrol)
+);
