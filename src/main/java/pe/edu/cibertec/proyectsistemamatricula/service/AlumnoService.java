@@ -33,4 +33,13 @@ public class AlumnoService {
     public void eliminarAlumno(Integer id) {
         alumnoRepository.deleteById(id);
     }
+
+    public Optional<Alumno> obtenerAlumnoPorNombre(String nombre) {
+        return alumnoRepository.findByNombre(nombre);
+    }
+
+    public List<Alumno> buscarAlumnoPorNombre(String nombre) {
+        return alumnoRepository.findAllByNombre(nombre);
+    }
+
 }

@@ -27,4 +27,12 @@ public class ProfesorService {
     public void eliminarProfesor(Integer id) {
         profesorRepository.deleteById(id);
     }
+
+    public Optional<Profesor> obtenerProfesorPorNombre(String nombre) {
+        return profesorRepository.findByNombre(nombre);
+    }
+
+    public List<Profesor> buscarProfesorPorNombre(String nombre) {
+        return profesorRepository.findAllByNombre(nombre);
+    }
 }

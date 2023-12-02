@@ -74,4 +74,15 @@ public class ProfesorController {
         }
     }
 
+    @GetMapping("/buscarPorNombre/{nombre}")
+    public ResponseEntity<List<Profesor>> buscarProfesorPorNombre(@PathVariable String nombre) {
+        List<Profesor> profesores = profesorService.buscarProfesorPorNombre(nombre);
+
+        if (profesores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(profesores, HttpStatus.OK);
+    }
+
 }
