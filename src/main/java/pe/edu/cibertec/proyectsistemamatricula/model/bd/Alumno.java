@@ -22,4 +22,5 @@ public class Alumno {
     private String apellido;
     @Column(name = "edad")
     private int edad;
+
 }

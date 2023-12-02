@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.proyectsistemamatricula.model.bd.Alumno;
-import pe.edu.cibertec.proyectsistemamatricula.model.dto.AlumnoDto;
 import pe.edu.cibertec.proyectsistemamatricula.service.AlumnoService;
 
 import java.util.ArrayList;
@@ -18,32 +17,16 @@ import java.util.stream.Collectors;
 @RequestMapping("api/alumnos")
 public class AlumnoController {
 
-    private final AlumnoService alumnoService;
+    private AlumnoService alumnoService;
 
     @GetMapping("")
-    public ResponseEntity<List<Alumno>> listarAlumno() {
-        List<Alumno> alumnoList = new ArrayList<>();
-        alumnoService.listarAlumno().forEach(alumnoList::add);
-        if (alumnoList.isEmpty()) {
+    public ResponseEntity<List<Alumno>> listarAlumnos() {
+        List<Alumno> alumnos = alumnoService.listarAlumno();
+        if (alumnos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(alumnoList, HttpStatus.OK);
+        return new ResponseEntity<>(alumnos, HttpStatus.OK);
     }
-
-    @GetMapping("/dto")
-    public ResponseEntity<List<AlumnoDto>> listarAlumnoDto(){
-        List<AlumnoDto> alumnoDtoList = alumnoService.listarAlumno()
-                .stream()
-                .map(alumno -> new AlumnoDto(alumno.getAlumnoid(), alumno.getNombre(), alumno.getApellido(), alumno.getEdad()))
-                .collect(Collectors.toList());
-
-        if (alumnoDtoList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(alumnoDtoList, HttpStatus.OK);
-    }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Alumno> obtenerAlumno(@PathVariable Integer id) {
@@ -53,17 +36,10 @@ public class AlumnoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Alumno> guardarAlumno(
-            @RequestParam(name = "alumnoid", required = false) Integer alumnoid,
-            @RequestParam(name = "nombre") String nombre,
-            @RequestParam(name = "apellido") String apellido,
-            @RequestParam(name = "edad") int edad) {
-
-        Alumno alumno = new Alumno(alumnoid, nombre, apellido, edad);
+    public ResponseEntity<Alumno> guardarAlumno(@RequestBody Alumno alumno) {
         Alumno nuevoAlumno = alumnoService.guardarAlumno(alumno);
         return new ResponseEntity<>(nuevoAlumno, HttpStatus.CREATED);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Alumno> actualizarAlumno(@PathVariable Integer id, @RequestBody Alumno alumno) {

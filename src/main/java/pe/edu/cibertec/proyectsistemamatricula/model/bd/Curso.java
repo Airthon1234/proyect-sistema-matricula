@@ -22,5 +22,6 @@ public class Curso {
     private String descripcion;
     @Column(name = "creditos")
     private int creditos;
+
 }
 

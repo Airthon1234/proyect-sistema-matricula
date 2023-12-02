@@ -28,4 +28,5 @@ public class Profesor {
 
     @Column(name = "correo", unique = true, nullable = false)
     private String correo;
+
 }
