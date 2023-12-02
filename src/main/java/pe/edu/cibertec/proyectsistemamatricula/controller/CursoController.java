@@ -30,7 +30,7 @@ public class CursoController {
         return new ResponseEntity<>(cursoList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/guardar/{id}")
     public ResponseEntity<Curso> obtenerCurso(@PathVariable Integer id) {
         Optional<Curso> curso = cursoService.obtenerCursoPorId(id);
         return curso.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -49,7 +49,7 @@ public class CursoController {
         return new ResponseEntity<>(nuevoCurso, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Curso> actualizarCurso(@PathVariable Integer id, @RequestBody Curso curso) {
         Optional<Curso> cursoExistente = cursoService.obtenerCursoPorId(id);
         if (cursoExistente.isPresent()) {
@@ -61,7 +61,7 @@ public class CursoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarCurso(@PathVariable Integer id) {
         Optional<Curso> cursoExistente = cursoService.obtenerCursoPorId(id);
         if (cursoExistente.isPresent()) {

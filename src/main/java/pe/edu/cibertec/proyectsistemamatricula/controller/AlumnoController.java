@@ -28,7 +28,7 @@ public class AlumnoController {
         return new ResponseEntity<>(alumnos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/guardar/{id}")
     public ResponseEntity<Alumno> obtenerAlumno(@PathVariable Integer id) {
         Optional<Alumno> alumno = alumnoService.obtenerAlumnoPorId(id);
         return alumno.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -36,12 +36,18 @@ public class AlumnoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Alumno> guardarAlumno(@RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> guardarAlumno(
+            @RequestParam(name = "alumnoid", required = false) Integer alumnoid,
+            @RequestParam(name = "nombre") String nombre,
+            @RequestParam(name = "apellido") String apellido,
+            @RequestParam(name = "edad") int edad) {
+
+        Alumno alumno = new Alumno(alumnoid, nombre, apellido, edad);
         Alumno nuevoAlumno = alumnoService.guardarAlumno(alumno);
         return new ResponseEntity<>(nuevoAlumno, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Alumno> actualizarAlumno(@PathVariable Integer id, @RequestBody Alumno alumno) {
         Optional<Alumno> alumnoExistente = alumnoService.obtenerAlumnoPorId(id);
 
@@ -54,7 +60,7 @@ public class AlumnoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarAlumno(@PathVariable Integer id) {
         Optional<Alumno> alumnoExistente = alumnoService.obtenerAlumnoPorId(id);
 

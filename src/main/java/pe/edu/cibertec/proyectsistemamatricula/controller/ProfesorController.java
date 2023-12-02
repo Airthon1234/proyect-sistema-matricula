@@ -30,7 +30,7 @@ public class ProfesorController {
         return new ResponseEntity<>(profesorList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/guardar/{id}")
     public ResponseEntity<Profesor> obtenerProfesor(@PathVariable Integer id) {
         Optional<Profesor> profesor = profesorService.obtenerProfesorPorId(id);
         return profesor.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -50,7 +50,7 @@ public class ProfesorController {
         return new ResponseEntity<>(nuevoProfesor, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Profesor> actualizarProfesor(@PathVariable Integer id, @RequestBody Profesor profesor) {
         Optional<Profesor> profesorExistente = profesorService.obtenerProfesorPorId(id);
         if (profesorExistente.isPresent()) {
@@ -62,7 +62,7 @@ public class ProfesorController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarProfesor(@PathVariable Integer id) {
         Optional<Profesor> profesorExistente = profesorService.obtenerProfesorPorId(id);
 
