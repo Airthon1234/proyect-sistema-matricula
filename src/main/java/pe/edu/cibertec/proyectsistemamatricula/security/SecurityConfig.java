@@ -1,5 +1,5 @@
 package pe.edu.cibertec.proyectsistemamatricula.security;
-
+/*
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,3 +57,4 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 }
+*/

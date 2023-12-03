@@ -22,12 +22,13 @@ public class ProfesorController {
 
     @GetMapping("")
     public ResponseEntity<List<Profesor>> listarProfesores() {
-        List<Profesor> profesorList = new ArrayList<>();
-        profesorService.listarProfesores().forEach(profesorList::add);
-        if (profesorList.isEmpty()) {
+        List<Profesor> profesores = profesorService.listarProfesores();
+
+        if (profesores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(profesorList, HttpStatus.OK);
+
+        return new ResponseEntity<>(profesores, HttpStatus.OK);
     }
 
     @GetMapping("/guardar/{id}")

@@ -22,12 +22,13 @@ public class CursoController {
 
     @GetMapping("")
     public ResponseEntity<List<Curso>> listarCursos() {
-        List<Curso> cursoList = new ArrayList<>();
-        cursoService.listarCursos().forEach(cursoList::add);
-        if (cursoList.isEmpty()) {
+        List<Curso> cursos = cursoService.listarCursos();
+
+        if (cursos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(cursoList, HttpStatus.OK);
+
+        return new ResponseEntity<>(cursos, HttpStatus.OK);
     }
 
     @GetMapping("/guardar/{id}")

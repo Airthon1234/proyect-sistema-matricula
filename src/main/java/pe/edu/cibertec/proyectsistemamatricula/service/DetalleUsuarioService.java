@@ -1,5 +1,5 @@
 package pe.edu.cibertec.proyectsistemamatricula.service;
-
+/*
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,3 +47,4 @@ public class DetalleUsuarioService implements UserDetailsService {
                 true, authorityList);
     }
 }
+*/

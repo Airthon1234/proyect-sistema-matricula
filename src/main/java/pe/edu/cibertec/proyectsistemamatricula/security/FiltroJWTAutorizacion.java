@@ -1,5 +1,5 @@
 package pe.edu.cibertec.proyectsistemamatricula.security;
-
+/*
 import io.jsonwebtoken.*;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -71,3 +71,4 @@ public class FiltroJWTAutorizacion extends OncePerRequestFilter {
         return true;
     }
 }
+*/

@@ -1,5 +1,5 @@
 package pe.edu.cibertec.proyectsistemamatricula.controller;
-
+/*
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
@@ -73,3 +73,4 @@ public class AuthController {
         return  token;
     }
 }
+*/
